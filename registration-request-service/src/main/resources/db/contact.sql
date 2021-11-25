@@ -1,0 +1,2 @@
+INSERT INTO public.hb_kind_contact (id, public_name, sysname) VALUES (1, 'Мобильный телефон', 'mobile_phone');
+INSERT INTO public.hb_kind_contact (id, public_name, sysname) VALUES (2, 'Электонная почта', 'email');
