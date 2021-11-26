@@ -16,11 +16,11 @@ public class RequestRegistration {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REQUEST_REGISTRATION_SEQ")
     @SequenceGenerator(name = "REQUEST_REGISTRATION_SEQ", sequenceName = "REQUEST_REGISTRATION_SEQ", allocationSize = 10)
-    @Column(name = "ID")
+    @Column(name = "ID", insertable = false, updatable = false, unique = true)
     private Long id;
 
     @Column(name = "NUMBER_REG", unique = true, nullable = false)
-    private Long numberReg;
+    private String numberReg;
 
     @Column(name = "STATE")
     @Enumerated(EnumType.STRING)
@@ -38,4 +38,10 @@ public class RequestRegistration {
     @ManyToOne
     @JoinColumn(name = "EXHIBITION_ID")
     private ExhibitionConfig exhibition;
+
+    @OneToOne(mappedBy = "requestRegistration", cascade = CascadeType.PERSIST)
+    private Dog dog;
+
+    @OneToOne(mappedBy = "requestRegistration", cascade = CascadeType.PERSIST)
+    private Physic physic;
 }

@@ -1,13 +1,14 @@
 package razoom.dao.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @Entity
+@RequiredArgsConstructor
+@NoArgsConstructor
 @Table(name = "CONTACT")
 public class Contact {
 
@@ -17,10 +18,17 @@ public class Contact {
     @Column(name = "ID")
     private Long id;
 
+    @NonNull
     @Column(name = "value", nullable = false)
     private String value;
 
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "TYPE_ID")
     private HbKindContact type;
+
+    @NonNull
+    @ManyToOne
+    @JoinColumn(name = "PHYSIC_ID")
+    private Physic physic;
 }

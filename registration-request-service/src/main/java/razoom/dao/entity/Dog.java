@@ -23,4 +23,8 @@ public class Dog {
     @ManyToOne
     @JoinColumn(name = "BREED_ID")
     private HbKindBreed type;
+
+    @OneToOne
+    @JoinColumn(name = "REQUEST_REGISTRATION_ID")
+    private RequestRegistration requestRegistration;
 }

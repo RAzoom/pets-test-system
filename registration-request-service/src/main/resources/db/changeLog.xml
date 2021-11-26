@@ -137,6 +137,21 @@
         </createTable>
         <createSequence sequenceName="CONTACT_SEQ" incrementBy="10"/>
     </changeSet>
+    <changeSet id="modify_contact_add_link_to_physic" author="arazumovskiy">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="CONTACT" columnName="PHYSIC_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="CONTACT">
+            <column name="PHYSIC_ID" type="BIGINT">
+                <constraints nullable="false"
+                             referencedTableName="PHYSIC"
+                             foreignKeyName="CONTACT_PHYSIC_ID_FK"
+                             referencedColumnNames="ID"/>
+            </column>
+        </addColumn>
+    </changeSet>
     <changeSet id="create_hb_kind_breed" author="arazumovskiy">
         <preConditions onFail="MARK_RAN">
             <not>
@@ -154,7 +169,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <!-- не лучшая идея конечно. но да ладно -->
+        <!-- не лучшая идея, конечно, но да ладно -->
         <sqlFile path="./db/breed.sql"/>
     </changeSet>
     <changeSet id="create_dog" author="arazumovskiy">
@@ -177,5 +192,28 @@
                              referencedColumnNames="ID"/>
             </column>
         </createTable>
+    </changeSet>
+    <changeSet id="modify_dog_add_link_to_request" author="arazumovskiy">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="DOG" columnName="REQUEST_REGISTRATION_ID"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="DOG">
+            <column name="REQUEST_REGISTRATION_ID" type="BIGINT">
+                <constraints referencedTableName="REQUEST_REGISTRATION"
+                             referencedColumnNames="ID"
+                             foreignKeyName="DOG_REQUEST_REGISTRATION_ID_FK"
+                             nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="create_sequence_dog" author="arazumovskiy">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists indexName="DOG_SEQ"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="DOG_SEQ" incrementBy="10"/>
     </changeSet>
 </databaseChangeLog>

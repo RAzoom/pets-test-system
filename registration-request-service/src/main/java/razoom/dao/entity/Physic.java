@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,5 +34,14 @@ public class Physic {
 
     @OneToOne
     @JoinColumn(name = "REQUEST_REGISTRATION_ID")
-    private RequestRegistration requestRegistrationId;
+    private RequestRegistration requestRegistration;
+
+    @OneToMany(mappedBy = "physic", cascade = CascadeType.PERSIST)
+    private List<Contact> contactList = new ArrayList<>();
+
+    public Physic addContact(Contact contact) {
+        this.contactList.add(contact);
+        return this;
+    }
+
 }

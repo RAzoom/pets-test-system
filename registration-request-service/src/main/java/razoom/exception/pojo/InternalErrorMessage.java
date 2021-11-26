@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ErrorMessage {
+public class InternalErrorMessage {
     @Schema(description = "Описание ошибки", example = "Минимальный размер фрагмента - 3 символа")
     private String errorMessage;
 }
