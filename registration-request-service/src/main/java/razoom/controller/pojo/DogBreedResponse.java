@@ -11,9 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DogBreedResponse {
-    @Schema(description = "Наименование пароды на английском", example = "Pug")
+    @Schema(description = "Наименование пароды на английском", example = "Russian wolfhound")
     private String breedEnd;
-    @Schema(description = "Наименование пароды на русском языке", example = "Мопс")
+    @Schema(description = "Наименование пароды на русском языке", example = "Русская борзая")
     private String breedRu;
     // todo сделать зашифрованным, потому что могу
     @Schema(description = "Уникальный идентификатор записи", example = "13qaedfarf1324gv")
