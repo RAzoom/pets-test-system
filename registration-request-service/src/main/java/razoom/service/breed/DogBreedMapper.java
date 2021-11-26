@@ -1,4 +1,4 @@
-package razoom.service;
+package razoom.service.breed;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
