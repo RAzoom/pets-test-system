@@ -38,9 +38,9 @@ public class RegistrationRequestController {
 
     @Operation(description = "Загрузка пароды собаки по фрагменту")
     @ApiResponses({
-            @ApiResponse(responseCode = "200",description = "Успешный ответ", content = @Content(schema = @Schema(implementation = DogBreedResponse.class))),
-            @ApiResponse(responseCode = "400",description = "Ошибка запроса", content = @Content(schema = @Schema(implementation = BadRequestMessage.class))),
-            @ApiResponse(responseCode = "500",description = "Внутренняя ошибка", content = @Content(schema = @Schema(implementation = BadRequestMessage.class)))
+            @ApiResponse(responseCode = "200", description = "Успешный ответ", content = @Content(schema = @Schema(implementation = DogBreedResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Ошибка запроса", content = @Content(schema = @Schema(implementation = BadRequestMessage.class))),
+            @ApiResponse(responseCode = "500", description = "Внутренняя ошибка", content = @Content(schema = @Schema(implementation = BadRequestMessage.class)))
     })
     @GetMapping(value = "/breed/search/{fragment}") // todo вынести в отдельный класс и поднять в заголовок
     public List<DogBreedResponse> searchBreed(
@@ -55,13 +55,12 @@ public class RegistrationRequestController {
 
     @Operation(description = "Регистрация заявки в БД")
     @ApiResponses({
-            @ApiResponse(responseCode = "200",description = "Успешный ответ", content = @Content(schema = @Schema(implementation = DogBreedResponse.class))),
-            @ApiResponse(responseCode = "400",description = "Ошибка запроса", content = @Content(schema = @Schema(implementation = BadRequestMessage.class))),
-            @ApiResponse(responseCode = "500",description = "Внутренняя ошибка", content = @Content(schema = @Schema(implementation = BadRequestMessage.class)))
+            @ApiResponse(responseCode = "200", description = "Успешный ответ"),
+            @ApiResponse(responseCode = "400", description = "Ошибка запроса", content = @Content(schema = @Schema(implementation = BadRequestMessage.class))),
+            @ApiResponse(responseCode = "500", description = "Внутренняя ошибка", content = @Content(schema = @Schema(implementation = BadRequestMessage.class)))
     })
     @PostMapping(value = "/request/create") // todo поднять в заголовок
     public void createRequest(@RequestBody @Valid RegistrationRequest request) {
         registrationRequestService.save(request);
     }
-
 }
