@@ -8,6 +8,7 @@ import razoom.dao.entity.*;
 import razoom.dao.pojo.RequestRegistrationState;
 import razoom.dao.repository.*;
 import razoom.exception.ApplicationException;
+import razoom.service.breed.DogBreedService;
 
 import javax.transaction.Transactional;
 import java.time.ZonedDateTime;
@@ -30,7 +31,7 @@ public class RegistrationRequestService {
     ExhibitionConfigRepository exhibitionConfig;
 
     @Autowired
-    HbKindBreedRepository kindBreed;
+    DogBreedService kindBreed;
 
     @Autowired
     HbKindContactRepository kindContact;

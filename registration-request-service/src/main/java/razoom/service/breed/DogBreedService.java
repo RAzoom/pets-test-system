@@ -1,6 +1,8 @@
 package razoom.service.breed;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -9,11 +11,13 @@ import razoom.dao.entity.HbKindBreed;
 import razoom.dao.repository.HbKindBreedRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Сервис получения данных о пароде из справочника
  */
 @Service
+@CacheConfig(cacheNames = {"breed"})
 public class DogBreedService {
 
     @Autowired
@@ -21,6 +25,11 @@ public class DogBreedService {
 
     @Autowired
     DogBreedMapper dogBreedMapper;
+
+    @Cacheable
+    public Optional<HbKindBreed> findById(Long id) {
+        return hbBreedKindCrud.findById(id);
+    }
 
     /**
      * Загрузка первых 7 подходящих пород под фрагмент
@@ -42,7 +51,6 @@ public class DogBreedService {
     public List<DogBreedResponse> loadHandBook(String fragment, int pageSize) {
         return loadHandBook(fragment, 0, pageSize);
     }
-
 
     /**
      * Загрузка страницы подходящих парод под фрагмент
