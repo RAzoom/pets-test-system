@@ -2,6 +2,7 @@ package razoom.service.breed;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,10 +27,23 @@ public class DogBreedService {
     @Autowired
     DogBreedMapper dogBreedMapper;
 
+    /**
+     * Метод получения сущности пароды из БД
+     * с использованием кэша
+     *
+     * @param id - идентификатор пароды
+     * @return - сущность
+     */
     @Cacheable
     public Optional<HbKindBreed> findById(Long id) {
         return hbBreedKindCrud.findById(id);
     }
+
+    /**
+     * Метод сброса текущего кэша поиска по идентификатору.
+     */
+    @CacheEvict(allEntries = true)
+    public void clearCache() {}
 
     /**
      * Загрузка первых 7 подходящих пород под фрагмент
