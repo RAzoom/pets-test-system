@@ -216,4 +216,22 @@
         </preConditions>
         <createSequence sequenceName="DOG_SEQ" incrementBy="10"/>
     </changeSet>
+
+    <changeSet id="exhibition_config_add_name" author="arazumovskiy">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="exhibition_config" columnName="NAME"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="exhibition_config">
+            <column name="NAME" type="VARCHAR(255)" defaultValue="TEST1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SYSNAME" type="VARCHAR(255)" defaultValue="TEST1">
+                <constraints nullable="false"
+                             unique="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

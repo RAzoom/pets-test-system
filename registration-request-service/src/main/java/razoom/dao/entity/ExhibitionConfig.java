@@ -31,6 +31,12 @@ public class ExhibitionConfig {
     @Column(name = "FINISH_REGISTRATION", nullable = false)
     private ZonedDateTime finishRegistration;
 
+    @Column(name = "NAME", nullable = false)
+    private String name;
+
+    @Column(name = "SYSNAME", nullable = false)
+    private String sysname;
+
     @Column(name = "STATE", nullable = false)
     @Enumerated(EnumType.STRING)
     private ExhibitionConfigState state;
