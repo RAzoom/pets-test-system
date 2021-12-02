@@ -1,9 +1,11 @@
 package razoom.controller.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
+import razoom.utils.jackson.encrypt.CipherLongDeserializer;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -40,14 +42,14 @@ public class RegistrationRequest {
     @Schema(description = "Электронная почта хозяина")
     private String email;
 
-    //todo добавить шифрование
+    @JsonDeserialize(using = CipherLongDeserializer.class)
     @NotNull(message = "Не указана парода")
-    @Schema(description = "Идентификатор пароды", example = "sed132412easd=")
+    @Schema(description = "Идентификатор пароды", example = "Y8qHINgHVJ69UySf79h+HQ==")
     private Long breedIdentifier;
 
-    //todo добавить шифрование
+    @JsonDeserialize(using = CipherLongDeserializer.class)
     @NotNull(message = "Не указана выставка")
-    @Schema(description = "Идентификатор выставки", example = "sed132412easd=")
+    @Schema(description = "Идентификатор выставки", example = "Y8qHINgHVJ69UySf79h+HQ==")
     private Long exhibitionIdentifier;
 
     @NotBlank(message = "Не указана кличка собаки")

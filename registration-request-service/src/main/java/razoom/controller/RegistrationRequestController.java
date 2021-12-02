@@ -59,7 +59,7 @@ public class RegistrationRequestController {
             @ApiResponse(responseCode = "400", description = "Ошибка запроса", content = @Content(schema = @Schema(implementation = BadRequestMessage.class))),
             @ApiResponse(responseCode = "500", description = "Внутренняя ошибка", content = @Content(schema = @Schema(implementation = BadRequestMessage.class)))
     })
-    @PostMapping(value = "/request/create") // todo поднять в заголовок
+    @PostMapping(value = "/request/create", consumes = MediaType.APPLICATION_JSON_VALUE) // todo поднять в заголовок
     public void createRequest(@RequestBody @Valid RegistrationRequest request) {
         registrationRequestService.save(request);
     }
