@@ -73,7 +73,6 @@ public class RegistrationRequestService {
         physic.setRequestRegistration(requestRegistration);
         requestRegistration.setPhysic(physic);
 
-        //todo прикрутить кофеиновый кэш
         HbKindContact mobileType = kindContact.findBySysname(Constants.MOBILE_SYSTEM_NAME);
         HbKindContact emailType = kindContact.findBySysname(Constants.EMAIL_SYSTEM_NAME);
 
