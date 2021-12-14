@@ -87,5 +87,4 @@ public class RegistrationRequestService {
         repository.save(requestRegistration);
     }
 
-
 }
