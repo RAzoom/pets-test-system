@@ -1,0 +1,20 @@
+nginx:
+  image: nginx:latest
+  container_name: doggy_nginx
+  restart: always
+  log_driver: "json-file"
+  log_opt:
+    max-size: 50m
+    max-file: "5"
+  ports:
+    - "80:80"
+  #    - "8080:80"
+  #    - "443:443"
+  #    - "9090:443"
+  volumes:
+    - ./conf.d:/etc/nginx/conf.d
+    #    - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+    #    - ./nginx/certs:/etc/nginx/certs
+    - ./log:/var/log/nginx
+  #    - ./nginx/www:/var/www/html
+  command: bash -c "sed -i \"s/worker_processes  1/worker_processes 2/\" /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
