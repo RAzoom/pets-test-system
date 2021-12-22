@@ -13,6 +13,7 @@ import { RequestComponent } from './forms/request-form/request.component'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BreedService } from './base-components/breed-service/breed.service';
+import { ExhibitionService } from './base-components/exhibitions-service/exhibitions.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BreedService } from './base-components/breed-service/breed.service';
     MatAutocompleteModule
   ],
   providers: [
-    BreedService,
+    BreedService, 
+    ExhibitionService,
     { provide: "BASE_API_URL", useValue: environment.apiUrl }
   ],
   bootstrap: [AppComponent]

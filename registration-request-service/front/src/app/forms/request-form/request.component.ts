@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { BreedService } from '../../base-components/breed-service/breed.service'
 import { BreedResponse } from '../../base-components/breed-service/breed.response'
 import { Observable, distinctUntilChanged, debounceTime, filter, switchMap } from 'rxjs';
+import { ExhibitionService } from '../../base-components/exhibitions-service/exhibitions.service';
+import { Exhibitions } from '../../base-components/exhibitions-service/exhibitions.response';
 
 @Component({
     selector: 'request-register',
@@ -12,6 +14,7 @@ import { Observable, distinctUntilChanged, debounceTime, filter, switchMap } fro
 })
 export class RequestComponent {
     breed$: Observable<BreedResponse[] | null>;
+    exhibitions: Exhibitions[] = [];
 
     profileForm: FormGroup = new FormGroup({
         name: new FormControl('Александр'),
@@ -29,13 +32,22 @@ export class RequestComponent {
         private http: HttpClient,
         @Inject('BASE_API_URL') private baseUrl: string,
         private breedService: BreedService,
+        private exhibitionService: ExhibitionService
     ) {
+
+        //todo поправить что бы при ответе 400 не валился.
         this.breed$ = this.profileForm.get('breedIdentifier')!.valueChanges.pipe(
+            debounceTime(400),
             distinctUntilChanged(),
-            debounceTime(1000),
             filter((name: string) => !!name),
             switchMap((name: string) => this.breedService.getByName(name))
         );
+    }
+
+    ngOnInit() {
+        this.exhibitionService.getActive().subscribe(
+            (el: Exhibitions[]) => this.exhibitions = el
+        )
     }
 
     sendRequest() {
@@ -48,10 +60,12 @@ export class RequestComponent {
         });
     }
 
-    getOptionText(breed: BreedResponse): string {
+    getBreedText(breed: BreedResponse): string {
         return breed.breedRu;
     }
 
-
+    getExhibitionText(exhibitions: Exhibitions): string {
+        return exhibitions.name;
+    }
 
 }

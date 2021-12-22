@@ -29,24 +29,24 @@
     </mat-form-field> -->
 
 
-    <mat-form-field appearance="fill">
+    <!-- <mat-form-field appearance="fill">
         <mat-label style="color: red">exhibitionIdentifier</mat-label>
         <input matInput placeholder="exhibitionIdentifier" id="exhibitionIdentifier" type="text" formControlName="exhibitionIdentifier">
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field appearance="fill">
         <mat-label style="color: red">dogName</mat-label>
         <input matInput placeholder="dogName" id="dogName" type="text" formControlName="dogName">
     </mat-form-field>
     <button mat-button type="submit">send</button>
-    
+
     <br>
     <br>
     <br>
 
     <mat-form-field appearance="fill">
         <mat-label>Breed</mat-label>
-        <input matInput formControlName="breedIdentifier" [matAutocomplete]="auto" id="breedIdentifier" type="text">
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="getOptionText">
+        <input matInput formControlName="breedIdentifier" [matAutocomplete]="autoBreed" id="breedIdentifier" type="text">
+        <mat-autocomplete #autoBreed="matAutocomplete" [displayWith]="getBreedText">
             <mat-option *ngFor="let breed of breed$ | async" [value]="breed">
                 {{breed.breedRu}}
             </mat-option>
@@ -54,8 +54,20 @@
     </mat-form-field>
 
     <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Exhibitions</mat-label>
+        <input matInput formControlName="exhibitionIdentifier" [matAutocomplete]="autoExhibition" id="exhibitionIdentifier" type="text">
+        <mat-autocomplete #autoExhibition="matAutocomplete" [displayWith]="getExhibitionText">
+            <mat-option *ngFor="let exhibition of exhibitions" [value]="exhibition">
+                {{exhibition.name}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
     <br>
     <br>
 
     {{profileForm.value | json}}
+    <br>
+    {{exhibitions | json}}
 </form>
