@@ -14,11 +14,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BreedService } from './base-components/breed-service/breed.service';
 import { ExhibitionService } from './base-components/exhibitions-service/exhibitions.service';
+import { HeaderComponent } from './base-components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RequestComponent
+    RequestComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
