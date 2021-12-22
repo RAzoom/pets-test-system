@@ -1,29 +1,20 @@
 .header-main {
-  background-color: #504;
-  display: flex;
-  height: 70px;
-  width: auto;
-}
-
-.header-left-block {
-  width: 25%;
-}
-
-.header-right-block {
-  width: 25%;
+    background-color: #504;
+    display: flex;
+    height: 70px;
+    width: auto;
+    justify-content: center;
 }
 
 .header-centr-block {
   width: 50%;
   display: flex;
   text-align: end;
-  justify-content: flex-end;
 }
 
 .header-text-block {
   display: flex;
   align-items: center;
-  width: 85%;
 }
 
 .header-text {
@@ -37,8 +28,8 @@
   display: flex;
   align-items: center;
   font-size: 25px;
-  width: 15%;
   text-transform: uppercase;
   font-weight: bold;
   text-shadow: 1px 1px #733a73;
+  padding: 0 5px;
 }
