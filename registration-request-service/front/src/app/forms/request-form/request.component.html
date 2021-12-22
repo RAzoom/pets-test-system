@@ -1,0 +1,61 @@
+<form [formGroup]="profileForm" (ngSubmit)="sendRequest()">
+    <mat-form-field appearance="fill">
+        <mat-label style="color: red">name</mat-label>
+        <input matInput placeholder="name" id="name" type="text" formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label style="color: red">surname</mat-label>
+        <input matInput placeholder="surname" id="surname" type="text" formControlName="surname">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label style="color: red">patronymic</mat-label>
+        <input matInput placeholder="patronymic" id="patronymic" type="text" formControlName="patronymic">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label style="color: red">birthDate</mat-label>
+        <input matInput placeholder="birthDate" id="birthDate" type="text" formControlName="birthDate">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label style="color: red">phone</mat-label>
+        <input matInput placeholder="phone" id="phone" type="text" formControlName="phone">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label style="color: red">email</mat-label>
+        <input matInput placeholder="email" id="email" type="text" formControlName="email">
+    </mat-form-field>
+    <!-- <mat-form-field appearance="fill">
+      <mat-label style="color: red">breedIdentifier</mat-label>
+      <input matInput placeholder="breedIdentifier" id="breedIdentifier" type="text" formControlName="breedIdentifier">
+    </mat-form-field> -->
+
+
+    <mat-form-field appearance="fill">
+        <mat-label style="color: red">exhibitionIdentifier</mat-label>
+        <input matInput placeholder="exhibitionIdentifier" id="exhibitionIdentifier" type="text" formControlName="exhibitionIdentifier">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label style="color: red">dogName</mat-label>
+        <input matInput placeholder="dogName" id="dogName" type="text" formControlName="dogName">
+    </mat-form-field>
+    <button mat-button type="submit">send</button>
+    
+    <br>
+    <br>
+    <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Breed</mat-label>
+        <input matInput formControlName="breedIdentifier" [matAutocomplete]="auto" id="breedIdentifier" type="text">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="getOptionText">
+            <mat-option *ngFor="let breed of breed$ | async" [value]="breed">
+                {{breed.breedRu}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <br>
+    <br>
+    <br>
+
+    {{profileForm.value | json}}
+</form>
