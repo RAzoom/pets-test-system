@@ -12,15 +12,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { RequestComponent } from './forms/request-form/request.component'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { BreedService } from './base-components/breed-service/breed.service';
-import { ExhibitionService } from './base-components/exhibitions-service/exhibitions.service';
-import { HeaderComponent } from './base-components/header/header.component';
+import { BreedService } from './services/breed-service/breed.service';
+import { ExhibitionService } from './services/exhibitions-service/exhibitions.service';
+import { HeaderComponent } from './base-components/header-component/header.component';
+import { ExhibitionCardComponent } from './base-components/exhibition-card-component/exhibition-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RequestComponent,
-    HeaderComponent
+    HeaderComponent,
+    ExhibitionCardComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,7 @@ import { HeaderComponent } from './base-components/header/header.component';
     MatSliderModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   providers: [
     BreedService, 
